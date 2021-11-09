@@ -39,6 +39,7 @@ for i in range(int(df_code.size/5)-1):
     print(df_code.iloc[i,0],df_code.iloc[i,4])
     if (df_code.iloc[i,4]<'20180101') and (int(df_data.size/13)-1>0):
         for j in range(int(df_data.size/13)-1,0,-1):
+
             max_close = df_data.iloc[j,5]
 #            if (df_data.iloc[j,11]!=0) and (df_data.iloc[j,5]>=df_data.iloc[j,11]*1.1) and (df_data.iloc[j,5]!=0) and (df_data.iloc[j,5]<=df_data.iloc[j,11]*1.4) and (df_data.iloc[j,5]>df_data.iloc[j,2]):
             if (df_data.iloc[j,11]!=0) and (df_data.iloc[j,5]>=df_data.iloc[j,11]*1.2) and (df_data.iloc[j,5]!=0) and (df_data.iloc[j,5]>df_data.iloc[j,2]):
