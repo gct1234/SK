@@ -44,8 +44,8 @@ for i in range(int(df_code.size/5)-1):
             if (df_data.iloc[j,11]!=0) and (df_data.iloc[j,5]>=df_data.iloc[j,11]*1.2) and (df_data.iloc[j,5]!=0) and (df_data.iloc[j,5]>df_data.iloc[j,2]):
                 y = 0
                 for y in range(int(df_data.size/13)-j):
-                    if (df_data.iloc[j-y,5]<=df_data.iloc[j,5]*0.95) or (df_data.iloc[j-y,5]<=df_data.iloc[j-y,11]) or (df_data.iloc[j-y,5]>=max_close*1.1) :
-                        if (df_data.iloc[j - y, 5] <= df_data.iloc[j, 5] * 0.95) or (df_data.iloc[j - y, 5] <= df_data.iloc[j - y, 11]):
+                    if (df_data.iloc[j-y,5]<=df_data.iloc[j,5]*0.97) or (df_data.iloc[j-y,5]<=df_data.iloc[j-y,11]) or (df_data.iloc[j-y,5]>=max_close*1.1) :
+                        if (df_data.iloc[j - y, 5] <= df_data.iloc[j, 5] * 0.90) or (df_data.iloc[j - y, 5] <= df_data.iloc[j - y, 11]):
                             y_k += 1
                         if  df_data.iloc[j - y, 5] >=max_close*1.1:
                             y_t += 1
