@@ -39,14 +39,15 @@ for i in range(int(df_code.size/5)-1):
     print(df_code.iloc[i,0],df_code.iloc[i,4])
     if (df_code.iloc[i,4]<'20180101') and (int(df_data.size/13)-1>0):
         for j in range(int(df_data.size/13)-1,0,-1):
-
-            if (df_data.iloc[j,11]!=0) and (df_data.iloc[j,5]>=df_data.iloc[j,11]*1.1) and (df_data.iloc[j,5]!=0) and (df_data.iloc[j,5]<=df_data.iloc[j,11]*1.4) and (df_data.iloc[j,5]>df_data.iloc[j,2]):
+            max_close = df_data.iloc[j,5]
+#            if (df_data.iloc[j,11]!=0) and (df_data.iloc[j,5]>=df_data.iloc[j,11]*1.1) and (df_data.iloc[j,5]!=0) and (df_data.iloc[j,5]<=df_data.iloc[j,11]*1.4) and (df_data.iloc[j,5]>df_data.iloc[j,2]):
+            if (df_data.iloc[j,11]!=0) and (df_data.iloc[j,5]>=df_data.iloc[j,11]*1.2) and (df_data.iloc[j,5]!=0) and (df_data.iloc[j,5]>df_data.iloc[j,2]):
                 y = 0
                 for y in range(int(df_data.size/13)-j):
-                    if (df_data.iloc[j-y,5]<=df_data.iloc[j,5]*0.95) or (df_data.iloc[j-y,5]<=df_data.iloc[j-y,11]) or (df_data.iloc[j-y,5]>=df_data.iloc[j-y,11]*1.4) :
+                    if (df_data.iloc[j-y,5]<=df_data.iloc[j,5]*0.95) or (df_data.iloc[j-y,5]<=df_data.iloc[j-y,11]) or (df_data.iloc[j-y,5]>=max_close*1.1) :
                         if (df_data.iloc[j - y, 5] <= df_data.iloc[j, 5] * 0.95) or (df_data.iloc[j - y, 5] <= df_data.iloc[j - y, 11]):
                             y_k += 1
-                        if  df_data.iloc[j - y, 5] >=df_data.iloc[j - y, 11] * 1.4:
+                        if  df_data.iloc[j - y, 5] >=max_close*1.1:
                             y_t += 1
                         print(df_data.iloc[j,1],df_data.iloc[j,5],df_data.iloc[j,11],df_data.iloc[j,5]/df_data.iloc[j,11])
                         sheet.cell(row=x,column=1,value = df_code.iloc[i,0])    #代码
