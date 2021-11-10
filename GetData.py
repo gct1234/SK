@@ -71,9 +71,10 @@ for i in range(int(df_code.size/5)-1):
                             if df_data.iloc[j-y,5] > max_close:
                                 max_close = df_data.iloc[j-y,5]
                             break
+
 wb.save('ma20.xlsx')
 print('盈利笔数：'+str(y_t))
 print('亏损笔数：'+str(y_k))
-print('盈亏比：'+str(y_t/(y_t+y_k)))
+#print('盈亏比：'+str(y_t/(y_t+y_k)))
 
 
