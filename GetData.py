@@ -37,19 +37,20 @@ for i in range(int(df_code.size/5)-1):
     df_data = ts.pro_bar(ts_code=df_code.iloc[i,0],adj='qfq',start_date='20180101',end_date='20181231',ma=[20])
 
     print(df_code.iloc[i,0],df_code.iloc[i,4])
-    new_date = df_data.iloc[int(df_data.size/13)-1,1]
-    if (df_code.iloc[i,4]<'20180101') and (int(df_data.size/13)-1>0):
+    if (df_code.iloc[i,4]<'20180101') and (int(df_data.size/13)-1>0) :
+        new_date = df_code.iloc[i, 4]
         for j in range(int(df_data.size/13)-1,0,-1):
-            if df_data.iloc[j,1]<new_date:
+            if df_data.iloc[j,1] > new_date and df_data.iloc[j,5]<100:
                 max_close = df_data.iloc[j,5]
 #              if (df_data.iloc[j,11]!=0) and (df_data.iloc[j,5]>=df_data.iloc[j,11]*1.1) and (df_data.iloc[j,5]!=0) and (df_data.iloc[j,5]<=df_data.iloc[j,11]*1.4) and (df_data.iloc[j,5]>df_data.iloc[j,2]):
                 if (df_data.iloc[j,11]!=0) and (df_data.iloc[j,5]>=df_data.iloc[j,11]*1.2) and (df_data.iloc[j,5]!=0) and (df_data.iloc[j,5]>df_data.iloc[j,2]) and ((df_data.iloc[j,3]-df_data.iloc[j,5])<(df_data.iloc[j,5]-df_data.iloc[j,2])*0.5):
                     y = 0
                     for y in range(int(df_data.size/13)-j):
-                        if (df_data.iloc[j-y,5]<=df_data.iloc[j,5]*0.97) or (df_data.iloc[j-y,5]<=df_data.iloc[j-y,11]) or (df_data.iloc[j-y,5]>=max_close*1.1) :
-                            if (df_data.iloc[j - y, 5] <= df_data.iloc[j, 5] * 0.97) or (df_data.iloc[j - y, 5] <= df_data.iloc[j - y, 11]):
+#                        if (df_data.iloc[j-y,5]<=df_data.iloc[j,5]*0.97) or (df_data.iloc[j-y,5]<=df_data.iloc[j-y,11]) or (df_data.iloc[j-y,5]>=max_close*1.1) :
+                        if (df_data.iloc[j-y,5]<=df_data.iloc[j,5]*0.95) or (df_data.iloc[j-y,5]<=df_data.iloc[j-y,11])  or (df_data.iloc[j-y,5]>=max_close*1.1):
+                            if df_data.iloc[j - y, 5] - df_data.iloc[j, 5] <=0 :
                                 y_k += 1
-                            if  df_data.iloc[j - y, 5] >=max_close*1.1:
+                            else:
                                 y_t += 1
                             print(df_data.iloc[j,1],df_data.iloc[j,5],df_data.iloc[j,11],df_data.iloc[j,5]/df_data.iloc[j,11])
                             sheet.cell(row=x,column=1,value = df_code.iloc[i,0])    #代码
@@ -67,6 +68,8 @@ for i in range(int(df_code.size/5)-1):
                             x +=  1
                             j -= y-1
                             new_date = df_data.iloc[j-y,1]
+                            if df_data.iloc[j-y,5] > max_close:
+                                max_close = df_data.iloc[j-y,5]
                             break
 
 wb.save('ma20.xlsx')
