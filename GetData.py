@@ -75,32 +75,6 @@ for i in range(int(df_code.size/5)-1):
 wb.save('ma20.xlsx')
 print('盈利笔数：'+str(y_t))
 print('亏损笔数：'+str(y_k))
-#print('盈亏比：'+str(y_t/(y_t+y_k)))
+print('盈亏比：'+str(y_t/(y_t+y_k)))
 
 
-#df_code = pro.stock_basic(exchange='',list_strtus='L',fields='ts_code,name,area,industry')
-#for i in range(int(df_code.size/4)-1):
-    
-#    insert_sql = "insert into data-code values ('"+df_code.iloc[i,0]+"','"+df_code.iloc[i,1]+"','"+df_code.iloc[i,2]+"','"+df_code.iloc[i,3]+"')"
-                 #%(str(df_code.iloc[i,0]),str(df_code.iloc[i,1]),str(df_code.iloc[i,2]),str(df_code.iloc[i,3]))
-#    cursor.execute(insert_sql)
-
-
-#df_data = ts.pro_bar(ts_code='600887.SH', asset='E', start_date='20180101', end_date='20181011',ma=[20])
-#print(df)
-#    print(df.iloc[i,0])    # 股票代码
-
-#for i in range(int(df.size/2)):
-#    dt=pro.daily(ts_code=df.iloc[i,0],strat_date='20211018',end_date='20211018')
-#    dt1.append(dt,ignore_index=True)
-#    dt.to_excel('test.xlsx')
-#print(dt)
-
-#dt=pro.daily(ts_code=df.iloc[0,0],strat_date='20211001',end_date='20211018')
-#for j in range(int(dt.size/11)):
-#    if dt.iloc[j,8]<9.98:
-#        dt.drop(index=j)
-#        print(dt)
-
-
-#dt.to_excel('test.xlsx')
