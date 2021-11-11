@@ -47,13 +47,13 @@ for i in range(int(df_code.size/5)-1):
             if df_data.iloc[j,1] > new_date and df_data.iloc[j,5]<100:
                 max_close = df_data.iloc[j,5]
 #              if (df_data.iloc[j,15]!=0) and (df_data.iloc[j,5]>=df_data.iloc[j,15]*1.1) and (df_data.iloc[j,5]!=0) and (df_data.iloc[j,5]<=df_data.iloc[j,13]*1.4) and (df_data.iloc[j,5]>df_data.iloc[j,2]):
-                if (df_data.iloc[j,15]!=0) and (df_data.iloc[j,5]>=df_data.iloc[j,15]*1.2) and (df_data.iloc[j,5]!=0) and (df_data.iloc[j,5]>df_data.iloc[j,2]) \
+                if (df_data.iloc[j,15]!=0) and (df_data.iloc[j,5]>=df_data.iloc[j,15]*1.1) and (df_data.iloc[j,5]!=0) and (df_data.iloc[j,5]>df_data.iloc[j,2]) \
                         and ((df_data.iloc[j,3]-df_data.iloc[j,5])<(df_data.iloc[j,5]-df_data.iloc[j,2])*0.5) and (df_data.iloc[j,11]>df_data.iloc[j,13] and
                         df_data.iloc[j,13]>df_data.iloc[j,15]) and df_data.iloc[j,10]>=df_data.iloc[j,16] and df_data.iloc[j,10]<=df_data.iloc[j,16]*2 :
                     y = 0
                     for y in range(df_data.shape[0]-j):
-#                        if (df_data.iloc[j-y,5]<=df_data.iloc[j,5]*0.97) or (df_data.iloc[j-y,5]<=df_data.iloc[j-y,13]) or (df_data.iloc[j-y,5]>=max_close*1.1) :
-                        if (df_data.iloc[j-y,5]<=df_data.iloc[j,5]*0.95) or (df_data.iloc[j-y,5]<=df_data.iloc[j-y,13])  or (df_data.iloc[j-y,5]>=max_close*1.1):
+#                        if (df_data.iloc[j-y,5]<=df_data.iloc[j,5]*0.95) or (df_data.iloc[j-y,5]<=df_data.iloc[j-y,13]) or (df_data.iloc[j-y,5]>=max_close*1.1) :
+                        if (df_data.iloc[j-y,5]<=df_data.iloc[j,5]*0.95) or (df_data.iloc[j-y,5]<=df_data.iloc[j-y,13])  or (df_data.iloc[j-y,5]<=max_close*0.95):
                             if df_data.iloc[j - y, 5] - df_data.iloc[j, 5] <=0 :
                                 y_k += 1
                             else:
