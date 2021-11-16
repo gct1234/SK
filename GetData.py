@@ -47,7 +47,17 @@ for i in range(df_code.shape[0]-1):
         for j in range(df_data.shape[0]-1,0,-1):
             if df_data.iloc[j,1] > new_date and df_data.iloc[j,5]<100:
                 max_close = df_data.iloc[j,5]
-                if (df_data.iloc[j,15]!=0) and (df_data.iloc[j,5]>=df_data.iloc[j,15]*1.1) and (df_data.iloc[j,5]!=0) and (df_data.iloc[j,5]>df_data.iloc[j,2]) and ((df_data.iloc[j,3]-df_data.iloc[j,5])<(df_data.iloc[j,5]-df_data.iloc[j,2])*0.5) and (df_data.iloc[j,11]>df_data.iloc[j,13] and df_data.iloc[j,13]>df_data.iloc[j,15]) and df_data.iloc[j,10]>=df_data.iloc[j,16] and df_data.iloc[j,10]<=df_data.iloc[j,16]*2 :
+                if (df_data.iloc[j,15]!=0) and (df_data.iloc[j,5]>=df_data.iloc[j,15]*1.1) and (df_data.iloc[j,5]!=0) and (df_data.iloc[j,5]>=df_data.iloc[j,2]) and ((df_data.iloc[j,3]-df_data.iloc[j,5])<=(df_data.iloc[j,5]-df_data.iloc[j,2])*0.5) and (df_data.iloc[j,11]>=df_data.iloc[j,13] and df_data.iloc[j,13]>=df_data.iloc[j,15]) and df_data.iloc[j,10]>=df_data.iloc[j,16] and df_data.iloc[j,10]<=df_data.iloc[j,16]*2 :
+                    # df_data.iloc[j, 15] != 0                        20日均线不空
+                    # df_data.iloc[j, 5] >= df_data.iloc[j, 15] * 1.1 当日收盘价>=20日均线的1.1倍
+                    # df_data.iloc[j, 5] != 0                         当日收盘价不空，不是停牌日
+                    # df_data.iloc[j, 5] > df_data.iloc[j, 2]         当日收盘价>= 开盘价
+                    # (df_data.iloc[j, 3] - df_data.iloc[j, 5]) < (df_data.iloc[j, 5] - df_data.iloc[j, 2]) * 0.5
+                    #                                                 当日最高价-收盘价<=（收盘价-开盘价）*0.5 即上影线长度不超过K线实体的一半
+                    # df_data.iloc[j, 11] > df_data.iloc[j, 13]       5日均线>10日均线
+                    # df_data.iloc[j, 13] > df_data.iloc[j, 15]       10日均线>20日均线
+                    # df_data.iloc[j, 10] >= df_data.iloc[j, 16]      5日成交量>=20日成交量
+                    # df_data.iloc[j, 10] <= df_data.iloc[j, 16] * 2  5日成交量<=20日成交量的2倍
                     y = 0
                     for y in range(df_data.shape[0]-j):
                         #卖出条件：或者跌穿条件日均线，或者跌破最高价的5%
@@ -94,7 +104,7 @@ sheet.cell(row=x+2, column=11, value=m_t/(m_t+m_k))  # 金额盈亏比
 sheet.cell(row=x+2, column=12, value=y_t/(y_t+y_k))  # 金额盈亏比
 
 
-wb.save('ma'+ma_d+'-'+s_date[0:3]+'.xlsx')
+wb.save('ma'+ma_d+'-'+s_date[0:4]+'.xlsx')
 
 
 
