@@ -94,7 +94,7 @@ sheet.cell(row=x+2, column=11, value=m_t/(m_t+m_k))  # 金额盈亏比
 sheet.cell(row=x+2, column=12, value=y_t/(y_t+y_k))  # 金额盈亏比
 
 
-wb.save('ma'+ma_d+'.xlsx')
+wb.save('ma'+ma_d+'-'+s_date[0:3]+'.xlsx')
 
 
 
